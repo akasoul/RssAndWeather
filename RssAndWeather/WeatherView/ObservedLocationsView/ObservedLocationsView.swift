@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-struct WeatherView:View {
-    @ObservedObject var model = WeatherViewModel()
+struct ObservedLocationsView:View {
+    @ObservedObject var model = ObservedLocationsViewModel()
     @State var showPopover=false
     let dstView = AddNewLocationView()
     

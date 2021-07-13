@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView{
-            WeatherView().tabItem({
+            ObservedLocationsView().tabItem({
                 Image(systemName: "cloud")
             })
             RssListView().tabItem({

@@ -10,7 +10,7 @@ import Combine
 import MapKit
 
 
-class WeatherViewModel: ObservableObject,NewLocationReceiver{
+class ObservedLocationsViewModel: ObservableObject,NewLocationReceiver{
     var observedLocations:[Location]=[]{
         didSet{
             let encoder=JSONEncoder()
@@ -33,7 +33,7 @@ class WeatherViewModel: ObservableObject,NewLocationReceiver{
                 }
             }
             if !foundNil{
-
+                
             }
         }
     }
@@ -51,15 +51,16 @@ class WeatherViewModel: ObservableObject,NewLocationReceiver{
     }
     
     func requestWeather(){
+        self.currentWeather=[]
         DispatchQueue.global().async{
             
             for i in 0..<self.observedLocations.count{
-                if(i<self.currentWeather.count){
-                    if(self.observedLocations[i].coord.lat==self.currentWeather[i].coord?.lat &&
-                        self.observedLocations[i].coord.lon==self.currentWeather[i].coord?.lon){
-                        continue
-                    }
-                }
+                //                if(i<self.currentWeather.count){
+                //                    if(self.observedLocations[i].coord.lat==self.currentWeather[i].coord?.lat &&
+                //                        self.observedLocations[i].coord.lon==self.currentWeather[i].coord?.lon){
+                //                        continue
+                //                    }
+                //                }
                 var answer=""
                 var responseJson: CurrentWeatherJSON?
                 //            let url = URL(string:"https://api.openweathermap.org/data/2.5/weather?id=\(self.observedLocations[i].id)&appid=0601def1087b7d7381320d12039fea10")
@@ -91,7 +92,7 @@ class WeatherViewModel: ObservableObject,NewLocationReceiver{
     
     func removeAt(index: Int){
         self.observedLocations.remove(at: index)
-self.currentWeather.remove(at: index)
+        //self.currentWeather.remove(at: index)
     }
     
     func addNewLocation(item: MKMapItem) {
